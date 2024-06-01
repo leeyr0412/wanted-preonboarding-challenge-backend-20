@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: market
+
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/wanted
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    com.wanted.market: debug
+
