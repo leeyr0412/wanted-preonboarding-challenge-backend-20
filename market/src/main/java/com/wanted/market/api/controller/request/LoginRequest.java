@@ -1,9 +1,9 @@
 package com.wanted.market.api.controller.request;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 @NoArgsConstructor
@@ -13,6 +13,6 @@ public class LoginRequest {
     private String loginId;
 
     @NotEmpty
-    @Size(max = 20)
+    @Length(max = 20)
     private String loginPw;
 }
