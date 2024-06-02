@@ -23,7 +23,7 @@ public class Users extends BaseEntity {
     private String encryptedPw;
 
     @Builder
-    public Users(String loginId, String encryptedPw) {
+    private Users(String loginId, String encryptedPw) {
         this.loginId = loginId;
         this.encryptedPw = encryptedPw;
     }
