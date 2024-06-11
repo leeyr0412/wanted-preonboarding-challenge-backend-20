@@ -1,8 +1,10 @@
 package com.wanted.market.api.service;
 
+import com.wanted.market.api.controller.response.ProductResponse;
 import com.wanted.market.api.controller.response.RegisterProductResponse;
 import com.wanted.market.api.service.dto.RegisterProductDto;
 import com.wanted.market.domain.product.Product;
+import com.wanted.market.domain.product.ProductQueryRepository;
 import com.wanted.market.domain.product.ProductRepository;
 import com.wanted.market.domain.product.ProductState;
 import com.wanted.market.domain.users.Users;
@@ -12,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -21,6 +24,7 @@ import java.util.NoSuchElementException;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductQueryRepository productQueryRepository;
     private final UsersRepository usersRepository;
 
     public RegisterProductResponse registerProduct(RegisterProductDto dto) {
@@ -35,6 +39,10 @@ public class ProductService {
                 .productPrice(savedProduct.getPrice())
                 .productCount(savedProduct.getCount())
                 .build();
+    }
+
+    public List<ProductResponse> getAllProducts() {
+        return productQueryRepository.getAllProducts();
     }
 
     private Product getSavedProduct(RegisterProductDto dto, Users findUser) {

@@ -1,6 +1,7 @@
 package com.wanted.market.api.controller;
 
 import com.wanted.market.api.controller.request.RegisterProductRequest;
+import com.wanted.market.api.controller.response.ProductResponse;
 import com.wanted.market.api.controller.response.RegisterProductResponse;
 import com.wanted.market.api.service.ProductService;
 import jakarta.validation.Valid;
@@ -10,10 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,4 +34,9 @@ public class ProductController {
         return ApiResponse.of(HttpStatus.BAD_REQUEST, "로그인이 필요합니다.");
     }
 
+    @GetMapping
+    public ApiResponse<?> getAllProducts() {
+        List<ProductResponse> responses = productService.getAllProducts();
+        return ApiResponse.ok(responses);
+    }
 }
